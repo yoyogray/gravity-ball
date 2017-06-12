@@ -1,0 +1,94 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>模拟弹簧小球运动</title>
+	<style>
+	*{
+		padding:0;
+		margin:0;
+	}
+	#div {
+		height:100px;
+		width:100px;
+		background-color:orange;
+		border-radius:50%;
+		position: absolute;
+		left:0px;
+		top:0px;
+
+	}
+
+	#span{
+		display:inline-block;
+		height:100px;
+		width:700px;
+		border-right:1px solid black;
+		/*position:relative;*/
+
+	}
+
+
+	</style>
+</head>
+<body>
+	<div id ='div'></div>
+	<span id ='span'></span>
+	
+	<script>
+	// function move (obj){
+	// 	clearInterval(obj.timer);
+	// 	var speed = 50;
+	// 	var a = 0;
+	// 	var u = 0.97;
+	// 	obj.timer = setInterval(function(){
+			
+	// 		a = (700 - obj.offsetLeft)/50;
+	// 		speed =  speed + a;
+	// 		speed = speed * u;
+	// 		obj.style.left = obj.offsetLeft + speed + 'px';
+
+	// 		if(Math.abs(speed) < 1 && Math.abs(obj.offsetLeft -700) < 1){
+	// 			clearInterval(obj.timer);
+	// 			obj.style.left = 700 + 'px';
+	// 			// alert('over')
+	// 		}
+	// 		console.log(speed);
+	// 	},30)
+	// }
+
+
+	function move(obj){
+		var speed = 0;
+		var a = 0;
+		var u = 0.97;
+		clearInterval(obj.timer)
+		obj.timer = setInterval(function(){
+			a = (700 - obj.offsetLeft)/50;
+			speed = speed + a;
+			speed = speed * u;
+
+			obj.style.left = obj.offsetLeft + speed + 'px';
+
+			if(Math.abs(speed) < 1 && Math.abs(obj.offsetLeft) < 1){
+				clearInterval(obj.timer)
+				obj.style.left = 700 + 'px';
+			}
+		},30)
+	}
+
+		var div = document.getElementById('div');
+		div.onclick = function(){
+		move(this);
+	}
+
+	</script>
+</body>
+</html>
+
+
+
